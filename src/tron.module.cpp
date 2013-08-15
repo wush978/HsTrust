@@ -1,7 +1,7 @@
 #include "Rcpp.h"
 #include "tron.h"
 
-#define HSTRUST_DEBUG
+//#define HSTRUST_DEBUG
 
 namespace HsTrust {
 
