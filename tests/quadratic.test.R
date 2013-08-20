@@ -13,9 +13,11 @@ grad <- function(w) {
 }
 
 Hs <- function(w, s) {
-	12 * (w-beta)^2 %*% s
+	12 * (w-beta)^2 * s
 }
 
 obj <- new(HsTrust, fun, grad, Hs, n)
-print(obj$tron(1e-7, TRUE))
+print(r <- obj$tron(1e-4, TRUE))
+print(fun(r))
 print(beta)
+print(fun(beta))
