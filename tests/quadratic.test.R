@@ -18,6 +18,7 @@ Hs <- function(w, s) {
 
 obj <- new(HsTrust, fun, grad, Hs, n)
 print(r <- obj$tron(1e-4, TRUE))
+print(r <- obj$tron_with_begin(1e-4, TRUE, r))
 print(fun(r))
 print(beta)
 print(fun(beta))
