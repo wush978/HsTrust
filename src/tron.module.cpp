@@ -84,6 +84,7 @@ private:
 	}
 
 friend SEXP tron(Rfunction*, double, bool);
+friend SEXP tron_with_begin(Rfunction*, double, bool);
 
 };
 
@@ -98,6 +99,17 @@ SEXP tron(Rfunction* fun, double tol, bool verbose) {
 	END_RCPP
 }
 
+SEXP tron_with_begin(Rfunction* fun, double tol, bool verbose, Rcpp::NumericVector begin) {
+	BEGIN_RCPP
+	if (begin.size() != fun->get_nr_variable()) throw std::invalid_argument("length(begin) == fun$n does not hold");
+	::TRON tron_obj(fun, tol);
+	if (verbose) tron_obj.set_print_string(&print_string_r);
+	Rcpp::NumericVector Rw(fun->get_nr_variable());
+	memcpy(&Rw[0], &begin[0], sizeof(double) * Rw.size());
+	tron_obj.tron(&Rw[0]);
+	return Rw;
+	END_RCPP
+}
 
 }
 
@@ -109,6 +121,7 @@ RCPP_MODULE(HsTrust) {
 	.constructor<SEXP, SEXP, SEXP, int>()
 	.property("n", &HsTrust::Rfunction::get_nr_variable, "Number of parameters")
 	.method("tron", &HsTrust::tron)
+	.method("tron_with_begin", &HsTrust::tron_with_begin)
 	;
 	
 }
