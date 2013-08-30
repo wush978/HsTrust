@@ -71,8 +71,8 @@ void TRON::tron(double *w)
 	double *w_new = new double[n];
 	double *g = new double[n];
 
-	for (i=0; i<n; i++)
-		w[i] = 0;
+//	for (i=0; i<n; i++)
+//		w[i] = 0;
 
         f = fun_obj->fun(w);
 	fun_obj->grad(w, g);
