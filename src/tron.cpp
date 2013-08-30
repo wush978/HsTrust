@@ -70,15 +70,24 @@ void TRON::tron(double *w)
 	double *r = new double[n];
 	double *w_new = new double[n];
 	double *g = new double[n];
+    double f1;
+	double *w1 = new double[n];
+	double *g1 = new double[n];
 
 //	for (i=0; i<n; i++)
 //		w[i] = 0;
 
-        f = fun_obj->fun(w);
+	for (i=0; i<n; i++)
+		w1[i] = 0;
+
+	f1 = fun_obj->fun(w1);
+	fun_obj->grad(w1, g1);
+	double gnorm1 = dnrm2_(&n, g1, &inc);
+
+	f = fun_obj->fun(w);
 	fun_obj->grad(w, g);
 	delta = dnrm2_(&n, g, &inc);
-	double gnorm1 = delta;
-	double gnorm = gnorm1;
+	double gnorm = delta;
 
 	if (gnorm <= eps*gnorm1)
 		search = 0;
@@ -94,10 +103,10 @@ void TRON::tron(double *w)
 
 		gs = ddot_(&n, g, &inc, s, &inc);
 		prered = -0.5*(gs-ddot_(&n, s, &inc, r, &inc));
-                fnew = fun_obj->fun(w_new);
+		fnew = fun_obj->fun(w_new);
 
 		// Compute the actual reduction.
-	        actred = f - fnew;
+		actred = f - fnew;
 
 		// On the first iteration, adjust the initial step bound.
 		snorm = dnrm2_(&n, s, &inc);
@@ -127,7 +136,7 @@ void TRON::tron(double *w)
 			iter++;
 			memcpy(w, w_new, sizeof(double)*n);
 			f = fnew;
-		        fun_obj->grad(w, g);
+			fun_obj->grad(w, g);
 
 			gnorm = dnrm2_(&n, g, &inc);
 			if (gnorm <= eps*gnorm1)
@@ -155,6 +164,8 @@ void TRON::tron(double *w)
 	delete[] r;
 	delete[] w_new;
 	delete[] s;
+    delete[] w1;
+    delete[] g1;
 }
 
 int TRON::trcg(double delta, double *g, double *s, double *r)
