@@ -1,9 +1,9 @@
 Package: HsTrust
 Type: Package
 Title: Trusted Region Optimization for Large Parameters
-Version: 0.1
+Version: 0.2
 Date: 2013-08-07
-Author: Wush Wu
+Author: The develop team of LIBLINEAR and Wush Wu
 Maintainer: Wush Wu <wush978@gmail.com>
 Description: Trusted Region Optimization for Large Parameters
 License: GPL >= 3
