@@ -17,9 +17,10 @@ Hs <- function(w, s) {
 }
 
 obj <- new(HsTrust, fun, grad, Hs, n)
-print(r <- obj$tron(1e-4, TRUE))
-print(r <- obj$tron_with_begin(1e-4, TRUE, r))
-print(fun(r))
-print(beta)
-print(fun(beta))
-print(r <- obj$tron_with_begin(1e-4, TRUE, rnorm(length(r))))
+print(r1 <- obj$tron(1e-4, TRUE))
+stopifnot(length(capture.output(r2 <- obj$tron_with_begin(1e-4, TRUE, r1))) == 0)
+stopifnot(r1 == r2)
+# print(fun(r))
+# print(beta)
+# print(fun(beta))
+# print(r <- obj$tron_with_begin(1e-4, TRUE, rnorm(length(r))))
