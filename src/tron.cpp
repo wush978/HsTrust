@@ -73,13 +73,17 @@ void TRON::tron(double *w)
 	double *Hs = new double[n];
 
 	for (i=0; i<n; i++)
-		w[i] = 0;
+		w_new[i] = 0;
 
+	f = fun_obj->fun(w_new);
+	fun_obj->grad(w_new, g);
+	delta = dnrm2_(&n, g, &inc);
+	double gnorm1 = delta;
+	
 	f = fun_obj->fun(w);
 	fun_obj->grad(w, g);
 	delta = dnrm2_(&n, g, &inc);
-	double gnorm1 = delta;
-	double gnorm = gnorm1;
+	double gnorm = delta;
 
 	if (gnorm <= eps*gnorm1)
 		search = 0;

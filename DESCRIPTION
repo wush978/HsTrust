@@ -1,7 +1,7 @@
 Package: HsTrust
 Type: Package
 Title: Trusted Region Optimization for Large Parameters
-Version: 0.2
+Version: 0.2.1
 Date: 2013-08-07
 Author: The develop team of LIBLINEAR and Wush Wu
 Maintainer: Wush Wu <wush978@gmail.com>
@@ -12,5 +12,3 @@ Depends:
     Rcpp (>= 0.10.4)
 LinkingTo: Rcpp
 RcppModules: HsTrust
-Collate:
-    'HsTrust.R'
