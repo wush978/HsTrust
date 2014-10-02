@@ -8,8 +8,7 @@ Maintainer: Wush Wu <wush978@gmail.com>
 Description: Trusted Region Optimization for Large Parameters
 License: GPL >= 3
 Depends:
-    methods
-Imports:
-    Rcpp (>= 0.10.4)
+    methods,
+    Rcpp(>= 0.10.4)
 LinkingTo: Rcpp
 RcppModules: HsTrust
