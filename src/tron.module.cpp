@@ -1,5 +1,5 @@
-#include "Rcpp.h"
-#include "tron.h"
+#include <Rcpp.h>
+#include <tron.h>
 
 //#define HSTRUST_DEBUG
 

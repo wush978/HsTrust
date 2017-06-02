@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "tron.h"
+#include <tron.h>
 
 #ifndef min
 template <class T> static inline T min(T x,T y) { return (x<y)?x:y; }

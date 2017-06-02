@@ -1,5 +1,4 @@
 #'@export HsTrust
-#'@useDynLib HsTrust
-.onLoad <- function(libname, pkgname) {
-	loadRcppModules()
-}
+#'@useDynLib HsTrust, .registration=TRUE
+#'@import methods
+Rcpp::loadModule("HsTrust", TRUE)
