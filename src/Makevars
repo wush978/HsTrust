@@ -1,5 +1,7 @@
 CXX_STD = CXX11
 
-PKG_CFLAGS = -I../inst/include
+PKG_CFLAGS = -I../inst/include -O3
 
-PKG_CXXFLAGS = -I../inst/include
+PKG_CXXFLAGS = -I../inst/include -O3
+
+PKG_LIBS = -O3

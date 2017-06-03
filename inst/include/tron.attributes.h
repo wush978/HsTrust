@@ -40,10 +40,4 @@ public:
   
 };
 
-#include <RcppCommon.h>
-
-SEXP init_tronC(SEXP, SEXP, SEXP, int);
-
-void tronC(SEXP, SEXP, double, bool);
-
 #endif //__TRON_ATTRIBUTES_H__

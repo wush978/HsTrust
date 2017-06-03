@@ -25,17 +25,17 @@ namespace HsTrust {
         }
     }
 
-    inline SEXP init_tronC(SEXP Rfun, SEXP Rgrad, SEXP Rhv, int nr) {
-        typedef SEXP(*Ptr_init_tronC)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_init_tronC p_init_tronC = NULL;
-        if (p_init_tronC == NULL) {
-            validateSignature("SEXP(*init_tronC)(SEXP,SEXP,SEXP,int)");
-            p_init_tronC = (Ptr_init_tronC)R_GetCCallable("HsTrust", "HsTrust_init_tronC");
+    inline SEXP get_init_tronC() {
+        typedef SEXP(*Ptr_get_init_tronC)();
+        static Ptr_get_init_tronC p_get_init_tronC = NULL;
+        if (p_get_init_tronC == NULL) {
+            validateSignature("SEXP(*get_init_tronC)()");
+            p_get_init_tronC = (Ptr_get_init_tronC)R_GetCCallable("HsTrust", "HsTrust_get_init_tronC");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_init_tronC(Rcpp::wrap(Rfun), Rcpp::wrap(Rgrad), Rcpp::wrap(Rhv), Rcpp::wrap(nr));
+            rcpp_result_gen = p_get_init_tronC();
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -44,22 +44,23 @@ namespace HsTrust {
         return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 
-    inline void tronC(SEXP RCfun, SEXP w, double tol, bool verbose) {
-        typedef SEXP(*Ptr_tronC)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_tronC p_tronC = NULL;
-        if (p_tronC == NULL) {
-            validateSignature("void(*tronC)(SEXP,SEXP,double,bool)");
-            p_tronC = (Ptr_tronC)R_GetCCallable("HsTrust", "HsTrust_tronC");
+    inline SEXP get_tronC() {
+        typedef SEXP(*Ptr_get_tronC)();
+        static Ptr_get_tronC p_get_tronC = NULL;
+        if (p_get_tronC == NULL) {
+            validateSignature("SEXP(*get_tronC)()");
+            p_get_tronC = (Ptr_get_tronC)R_GetCCallable("HsTrust", "HsTrust_get_tronC");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_tronC(Rcpp::wrap(RCfun), Rcpp::wrap(w), Rcpp::wrap(tol), Rcpp::wrap(verbose));
+            rcpp_result_gen = p_get_tronC();
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 
 }

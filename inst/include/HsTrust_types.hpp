@@ -4,5 +4,4 @@
 #include <memory>
 #include "tron.attributes.h"
 
-
 #endif // __HSTRUST_TYPES_HPP__

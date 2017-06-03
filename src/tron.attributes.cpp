@@ -22,16 +22,11 @@ static void _tronC(Cfunction* pCfun, double* w, double tol, bool verbose) {
 using namespace Rcpp;
 
 //[[Rcpp::export]]
-SEXP init_tronC(SEXP Rfun, SEXP Rgrad, SEXP Rhv, int nr) {
-  XPtr<Fun> fun(Rfun);
-  XPtr<Grad> grad(Rgrad);
-  XPtr<HessianV> hv(Rhv);
-  return XPtr<Cfunction>(_init_tronC(*fun, *grad, *hv, nr));
+SEXP get_init_tronC() {
+  return reinterpret_cast<SEXP>(&_init_tronC);
 }
 
 //[[Rcpp::export]]
-void tronC(SEXP RCfun, SEXP w, double tol, bool verbose) {
-  XPtr<Cfunction> Cfun(RCfun);
-  double* pw = &NumericVector(w)[0];
-  _tronC(Cfun.get(), pw, tol, verbose);
+SEXP get_tronC() {
+  return reinterpret_cast<SEXP>(&_tronC);
 }

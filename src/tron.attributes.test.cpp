@@ -1,4 +1,4 @@
-#include "tron.attributes.h"
+#include "HsTrust.h"
 
 static int nr = 10;
 
@@ -26,12 +26,8 @@ static void Hv(double *s, double *Hs) {
 using namespace Rcpp;
 
 //[[Rcpp::export]]
-SEXP test_tron_attributes() {
-  XPtr<Fun> pf(new Fun(static_cast<Fun>(&f)));
-  XPtr<Grad> pgrad(new Grad(static_cast<Grad>(&grad)));
-  XPtr<HessianV> phv(new HessianV(static_cast<HessianV>(&Hv)));
-  XPtr<Cfunction> RCfun(init_tronC(pf, pgrad, phv, nr));
-  NumericVector w(nr);
-  tronC(RCfun, w, 0.0001, true);
-  return w;
+void test_tron_attributes() {
+  std::shared_ptr<Cfunction> cfun(init_tronC(&f, &grad, &Hv, 10));
+  std::vector<double> w(10, 0.0);
+  tronC(cfun.get(), &w[0], 0.001, true);
 }
