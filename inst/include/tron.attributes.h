@@ -1,6 +1,7 @@
 #ifndef __TRON_ATTRIBUTES_H__
 #define __TRON_ATTRIBUTES_H__
 
+#include <functional>
 #include <memory>
 #include <tron.h>
 
