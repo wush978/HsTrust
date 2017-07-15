@@ -29,5 +29,7 @@ using namespace Rcpp;
 void test_tron_attributes() {
   std::shared_ptr<Cfunction> cfun(init_tronC(&f, &grad, &Hv, 10));
   std::vector<double> w(10, 0.0);
-  tronC(cfun.get(), &w[0], 0.001, true);
+  tronC(cfun.get(), &w[0], 0.001, [](const char* s) {
+    ::Rprintf("%s", s);
+  });
 }

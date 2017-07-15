@@ -11,18 +11,18 @@ using namespace Rcpp;
 
 // get_init_tronC
 SEXP get_init_tronC();
-static SEXP HsTrust_get_init_tronC_try() {
+static SEXP _HsTrust_get_init_tronC_try() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     rcpp_result_gen = Rcpp::wrap(get_init_tronC());
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP HsTrust_get_init_tronC() {
+RcppExport SEXP _HsTrust_get_init_tronC() {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(HsTrust_get_init_tronC_try());
+        rcpp_result_gen = PROTECT(_HsTrust_get_init_tronC_try());
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -40,18 +40,18 @@ RcppExport SEXP HsTrust_get_init_tronC() {
 }
 // get_tronC
 SEXP get_tronC();
-static SEXP HsTrust_get_tronC_try() {
+static SEXP _HsTrust_get_tronC_try() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     rcpp_result_gen = Rcpp::wrap(get_tronC());
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP HsTrust_get_tronC() {
+RcppExport SEXP _HsTrust_get_tronC() {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(HsTrust_get_tronC_try());
+        rcpp_result_gen = PROTECT(_HsTrust_get_tronC_try());
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -69,7 +69,7 @@ RcppExport SEXP HsTrust_get_tronC() {
 }
 // test_tron_attributes
 void test_tron_attributes();
-RcppExport SEXP HsTrust_test_tron_attributes() {
+RcppExport SEXP _HsTrust_test_tron_attributes() {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     test_tron_attributes();
@@ -78,7 +78,7 @@ END_RCPP
 }
 
 // validate (ensure exported C++ functions exist before calling them)
-static int HsTrust_RcppExport_validate(const char* sig) { 
+static int _HsTrust_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
         signatures.insert("SEXP(*get_init_tronC)()");
@@ -88,21 +88,21 @@ static int HsTrust_RcppExport_validate(const char* sig) {
 }
 
 // registerCCallable (register entry points for exported C++ functions)
-RcppExport SEXP HsTrust_RcppExport_registerCCallable() { 
-    R_RegisterCCallable("HsTrust", "HsTrust_get_init_tronC", (DL_FUNC)HsTrust_get_init_tronC_try);
-    R_RegisterCCallable("HsTrust", "HsTrust_get_tronC", (DL_FUNC)HsTrust_get_tronC_try);
-    R_RegisterCCallable("HsTrust", "HsTrust_RcppExport_validate", (DL_FUNC)HsTrust_RcppExport_validate);
+RcppExport SEXP _HsTrust_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("HsTrust", "_HsTrust_get_init_tronC", (DL_FUNC)_HsTrust_get_init_tronC_try);
+    R_RegisterCCallable("HsTrust", "_HsTrust_get_tronC", (DL_FUNC)_HsTrust_get_tronC_try);
+    R_RegisterCCallable("HsTrust", "_HsTrust_RcppExport_validate", (DL_FUNC)_HsTrust_RcppExport_validate);
     return R_NilValue;
 }
 
 RcppExport SEXP _rcpp_module_boot_HsTrust();
 
 static const R_CallMethodDef CallEntries[] = {
-    {"HsTrust_get_init_tronC", (DL_FUNC) &HsTrust_get_init_tronC, 0},
-    {"HsTrust_get_tronC", (DL_FUNC) &HsTrust_get_tronC, 0},
-    {"HsTrust_test_tron_attributes", (DL_FUNC) &HsTrust_test_tron_attributes, 0},
+    {"_HsTrust_get_init_tronC", (DL_FUNC) &_HsTrust_get_init_tronC, 0},
+    {"_HsTrust_get_tronC", (DL_FUNC) &_HsTrust_get_tronC, 0},
+    {"_HsTrust_test_tron_attributes", (DL_FUNC) &_HsTrust_test_tron_attributes, 0},
     {"_rcpp_module_boot_HsTrust", (DL_FUNC) &_rcpp_module_boot_HsTrust, 0},
-    {"HsTrust_RcppExport_registerCCallable", (DL_FUNC) &HsTrust_RcppExport_registerCCallable, 0},
+    {"_HsTrust_RcppExport_registerCCallable", (DL_FUNC) &_HsTrust_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
 };
 

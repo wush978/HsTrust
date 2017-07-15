@@ -8,13 +8,9 @@ static Cfunction* _init_tronC(Fun fun, Grad grad, HessianV hv, int nr) {
   return new Cfunction(fun, grad, hv, nr);
 }
 
-static void print_string_r(const char *s) {
-  ::Rprintf("%s", s);
-}
-
-static void _tronC(Cfunction* pCfun, double* w, double tol, bool verbose) {
+static void _tronC(Cfunction* pCfun, double* w, double tol, void(*printer)(const char*)) {
   TRON tron_obj(pCfun, tol);
-  if (verbose) tron_obj.set_print_string(&print_string_r);
+  tron_obj.set_print_string(printer);
   tron_obj.tron(w);
 }
 

@@ -17,7 +17,7 @@ namespace HsTrust {
             require("HsTrust", Rcpp::Named("quietly") = true);
             typedef int(*Ptr_validate)(const char*);
             static Ptr_validate p_validate = (Ptr_validate)
-                R_GetCCallable("HsTrust", "HsTrust_RcppExport_validate");
+                R_GetCCallable("HsTrust", "_HsTrust_RcppExport_validate");
             if (!p_validate(sig)) {
                 throw Rcpp::function_not_exported(
                     "C++ function with signature '" + std::string(sig) + "' not found in HsTrust");
@@ -30,7 +30,7 @@ namespace HsTrust {
         static Ptr_get_init_tronC p_get_init_tronC = NULL;
         if (p_get_init_tronC == NULL) {
             validateSignature("SEXP(*get_init_tronC)()");
-            p_get_init_tronC = (Ptr_get_init_tronC)R_GetCCallable("HsTrust", "HsTrust_get_init_tronC");
+            p_get_init_tronC = (Ptr_get_init_tronC)R_GetCCallable("HsTrust", "_HsTrust_get_init_tronC");
         }
         RObject rcpp_result_gen;
         {
@@ -49,7 +49,7 @@ namespace HsTrust {
         static Ptr_get_tronC p_get_tronC = NULL;
         if (p_get_tronC == NULL) {
             validateSignature("SEXP(*get_tronC)()");
-            p_get_tronC = (Ptr_get_tronC)R_GetCCallable("HsTrust", "HsTrust_get_tronC");
+            p_get_tronC = (Ptr_get_tronC)R_GetCCallable("HsTrust", "_HsTrust_get_tronC");
         }
         RObject rcpp_result_gen;
         {

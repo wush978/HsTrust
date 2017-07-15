@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 test_tron_attributes <- function() {
-    invisible(.Call(HsTrust_test_tron_attributes))
+    invisible(.Call(`_HsTrust_test_tron_attributes`))
 }
 
 # Register entry points for exported C++ functions
 methods::setLoadAction(function(ns) {
-    .Call('HsTrust_RcppExport_registerCCallable', PACKAGE = 'HsTrust')
+    .Call('_HsTrust_RcppExport_registerCCallable', PACKAGE = 'HsTrust')
 })
