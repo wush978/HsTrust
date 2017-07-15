@@ -8,7 +8,7 @@ static Cfunction* _init_tronC(Fun fun, Grad grad, HessianV hv, int nr) {
   return new Cfunction(fun, grad, hv, nr);
 }
 
-static void _tronC(Cfunction* pCfun, double* w, double tol, void(*printer)(const char*)) {
+static void _tronC(Cfunction* pCfun, double* w, double tol, std::function<void(const char*)> printer) {
   TRON tron_obj(pCfun, tol);
   tron_obj.set_print_string(printer);
   tron_obj.tron(w);

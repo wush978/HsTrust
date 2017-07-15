@@ -38,7 +38,7 @@ void TRON::info(const char *fmt,...)
 	va_start(ap,fmt);
 	vsprintf(buf,fmt,ap);
 	va_end(ap);
-	(*tron_print_string)(buf);
+	tron_print_string(buf);
 }
 
 TRON::TRON(const function *fun_obj, double eps, int max_iter)
@@ -253,7 +253,7 @@ double TRON::norm_inf(int n, double *x)
 	return(dmax);
 }
 
-void TRON::set_print_string(void (*print_string) (const char *buf))
+void TRON::set_print_string(std::function<void(const char*)> print_string)
 {
 	tron_print_string = print_string;
 }

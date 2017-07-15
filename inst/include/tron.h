@@ -1,6 +1,8 @@
 #ifndef _TRON_H
 #define _TRON_H
 
+#include <functional>
+
 class function
 {
 public:
@@ -19,7 +21,7 @@ public:
 	~TRON();
 
 	void tron(double *w);
-	void set_print_string(void (*i_print) (const char *buf));
+	void set_print_string(std::function<void(const char*)>);
 
 private:
 	int trcg(double delta, double *g, double *s, double *r);
@@ -29,6 +31,6 @@ private:
 	int max_iter;
 	function *fun_obj;
 	void info(const char *fmt,...);
-	void (*tron_print_string)(const char *buf);
+	std::function<void(const char*)> tron_print_string;
 };
 #endif

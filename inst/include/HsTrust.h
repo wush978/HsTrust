@@ -16,8 +16,8 @@ static Cfunction* init_tronC(Fun fun, Grad grad, HessianV hv, int nr) {
   return f(fun, grad, hv, nr);
 }
 
-static void tronC(Cfunction* pCfun, double* w, double tol, void(*printer)(const char*)) {
-  typedef void(*TronC)(Cfunction*, double*, double, void(*)(const char*));
+static void tronC(Cfunction* pCfun, double* w, double tol, std::function<void(const char*)> printer) {
+  typedef void(*TronC)(Cfunction*, double*, double, std::function<void(const char*)>);
   static TronC f = NULL;
   if (!f) {
     f = reinterpret_cast<TronC>(HsTrust::get_tronC());
