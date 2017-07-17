@@ -1,29 +1,30 @@
-#ifndef _HsTrust_H_
-#define _HsTrust_H_
+#ifndef __HSTRUST_H__
+#define __HSTRUST_H__
 
-#include "HsTrust_RcppExports.h"
-
-#include <stddef.h>
+#include <stdexcept>
 #include <R_ext/Rdynload.h>
-#include "HsTrust_RcppExports.h"
+#include <tron.h>
+#include <tron_function.h>
 
-static Cfunction* init_tronC(Fun fun, Grad grad, HessianV hv, int nr) {
-  typedef Cfunction* (*InitTronC)(Fun fun, Grad grad, HessianV hv, int nr);
-  static InitTronC f = NULL;
-  if (!f) {
-    f = reinterpret_cast<InitTronC>(HsTrust::get_init_tronC());
-  }
-  return f(fun, grad, hv, nr);
+namespace HsTrust {
+
+typedef TRON*(*InitTron)(const ::function*, double, int);
+typedef void(*FinalizeTron)(TRON*);
+typedef void(*SetPrintString)(TRON*, std::function<void(const char*)>);
+typedef void(*Tron)(TRON*, double*);
+
+InitTron init_tron = nullptr;
+FinalizeTron finalize_tron = nullptr;
+SetPrintString set_print_string = nullptr;
+Tron tron = nullptr;
+
+void init() {
+  init_tron = (InitTron) R_GetCCallable("HsTrust", "init_tron");
+  finalize_tron = (FinalizeTron) R_GetCCallable("HsTrust", "finalize_tron");
+  tron = (Tron) R_GetCCallable("HsTrust", "tron");
+  set_print_string = (SetPrintString) R_GetCCallable("HsTrust", "set_print_string");
 }
 
-static void tronC(Cfunction* pCfun, double* w, double tol, std::function<void(const char*)> printer) {
-  typedef void(*TronC)(Cfunction*, double*, double, std::function<void(const char*)>);
-  static TronC f = NULL;
-  if (!f) {
-    f = reinterpret_cast<TronC>(HsTrust::get_tronC());
-  }
-  return f(pCfun, w, tol, printer);
 }
 
-
-#endif // _HsTrust_H_
+#endif // __HSTRUST_H__

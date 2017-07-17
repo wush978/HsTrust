@@ -1,2 +1,1 @@
-print(HsTrust:::test_tron_attributes())
-gc()
+Rcpp::sourceCpp("cpp/tron.export.test.cpp", verbose = TRUE)
