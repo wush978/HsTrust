@@ -21,7 +21,7 @@ grad(w)
 Hs(w, w)
 
 obj <- new(HsTrust, fun, grad, Hs, length(w))
-r <- obj$tron(1e-4, TRUE)
+r <- obj$tron(1e-7, TRUE)
 r
 g <- lm(y ~ m - 1)
-all.equal(c(coef(g) - r), rep(0, length(r)))
+stopifnot(isTRUE(all.equal(as.vector(coef(g)), r, tolerance = 1e-6)))

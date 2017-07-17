@@ -24,7 +24,7 @@ public:
 		cpw(w);
 		return Rcpp::as<double>(_fun(Rcpp::wrap(_w)));
 	}
-	void grad(double *w, double *g) {
+	void grad(const double *w, double *g) {
 		cpw(w);
 		Rcpp::NumericVector retval(_grad(Rcpp::wrap(_w)));
 		memcpy(g, &retval[0], sizeof(double) * retval.size());
@@ -42,7 +42,7 @@ public:
 		#endif //HSTRUST_DEBUG
 	}
 	
-	void Hv(double *s, double *Hs) {
+	void Hv(const double *s, double *Hs) {
 		cps(s);
 		Rcpp::NumericVector retval(_Hv(Rcpp::wrap(_w), Rcpp::wrap(_s)));
 		memcpy(Hs, &retval[0], sizeof(double) * retval.size());
@@ -75,11 +75,11 @@ public:
 	}
 	
 private:
-	inline void cpw(double* w) {
+	inline void cpw(const double* w) {
 		memcpy(&_w[0], w, sizeof(double) * _w.size());		
 	}
 
-	inline void cps(double* s) {
+	inline void cps(const double* s) {
 		memcpy(&_s[0], s, sizeof(double) * _s.size());		
 	}
 

@@ -11,7 +11,7 @@ class TestLossFunction : public ::function {
 
   const int nr;
 
-  double* last_w;
+  const double* last_w;
 
 public:
   
@@ -26,14 +26,14 @@ public:
     }
   }
   
-  virtual void grad(double *w, double *g) {
+  virtual void grad(const double *w, double *g) {
     last_w = w;
     for(int i = 0;i < nr;i++) {
       g[i] = std::exp(w[i]) - 1;
     }
   }
   
-  virtual void Hv(double *s, double *Hs) {
+  virtual void Hv(const double *s, double *Hs) {
     for(int i = 0;i < nr;i++) {
       Hs[i] = s[i] * std::exp(last_w[i]);
     }
@@ -54,9 +54,9 @@ void test_tron_attributes() {
   TestLossFunction loss(10);
   std::vector<double> w0(10, 0.0);
   for(int i = 0;i < w0.size();i++) {
-    w0[i] = i - 5;
+    w0[i] = 0.1 * (i - 5);
   }
-  std::shared_ptr<TRON> tron(HsTrust::init_tron(&loss, 1e-4, 1000), [](TRON* tron) {
+  std::shared_ptr<TRON> tron(HsTrust::init_tron(&loss, 1e-2, 100), [](TRON* tron) {
     HsTrust::finalize_tron(tron);
   });
   HsTrust::set_print_string(tron.get(), [](const char* s) {
