@@ -24,3 +24,12 @@ stopifnot(r1 == r2)
 # print(beta)
 # print(fun(beta))
 # print(r <- obj$tron_with_begin(1e-4, TRUE, rnorm(length(r))))
+
+
+obj <- new(HsTrust, fun, grad, Hs, n)
+l1 <- capture.output(r1 <- obj$tron_with_begin(1e-4, TRUE, 0.0))
+
+obj <- new(HsTrust, fun, grad, Hs, n)
+l2 <- capture.output(r1 <- obj$tron_with_begin_iter(1e-4, length(l1) - 1, TRUE, 0.0))
+stopifnot(length(l1) - 1 == length(l2))
+stopifnot(head(l1, length(l2)) == l2)
